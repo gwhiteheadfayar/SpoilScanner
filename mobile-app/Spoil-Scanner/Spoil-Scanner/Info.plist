@@ -22,6 +22,6 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Use Camera</string>
+	<string>Use camera</string>
 </dict>
 </plist>

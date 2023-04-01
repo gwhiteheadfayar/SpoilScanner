@@ -50,85 +50,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)
-        guard let image = imageStore else {
-            print("No image selected")
-            return
-        }
-        sendImageToBackend(image)
-        print("sent")
         
     }
     
-    func imagePickerController( picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imageStore = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         picker.dismiss(animated: true, completion: nil)
         print("Image Stored")
     }
-    
-    func sendImageToBackend(_ image: UIImage) {
-            // Convert image to compressed JPEG data
-            guard let imageData = image.jpegData(compressionQuality: 0.1) else {
-                print("Unable to convert image to data format")
-                return
-            }
-            let base64String = imageData.base64EncodedString(options: [])
-
-            // Create the URL components
-            var urlComponents = URLComponents()
-            urlComponents.scheme = "http"
-            urlComponents.host = "10.35.125.219"
-            urlComponents.port = 3000
-            urlComponents.path = "/submitReceipt"
-            
-            let queryItems = [
-                URLQueryItem(name: "user_id", value: "Vincent_Tren"),
-            ]
-
-            // Add the query items to the URL components
-            urlComponents.queryItems = queryItems
-
-            // Create the URL request
-            guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            let jsonBody: [String: Any] = [
-                "image_data": base64String
-            ]
-            
-            
-
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: jsonBody, options: []) else {
-                fatalError("Could not create request body")
-            }
-            request.httpBody = httpBody
-
-            let session = URLSession.shared
-            let task = session.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                    return
-                }
-                guard let data = data else {
-                    print("No data returned")
-                    return
-                }
-                print("Response: \(String(data: data, encoding: .utf8) ?? "")")
-            }
-            task.resume()
-            print("sent")
-        }
-
-//        @IBAction func addButton(_ sender: Any) {
-//            guard let image = imageStore else {
-//                print("No image selected")
-//                return
-//            }
-//            sendImageToBackend(image)
-//        }
-
-    
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -144,6 +73,94 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return collectionView
     }()
     
+    
+    func sendImageToBackend(_ image: UIImage) {        // Convert image to compressed JPEG data
+        guard let imageData = image.jpegData(compressionQuality: 0.1) else {
+            print("Unable to convert image to data format")
+            return
+        }
+        let base64String = imageData.base64EncodedString(options: [])
+
+        // Create the URL components
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "http"
+        urlComponents.host = "10.35.125.219"
+        urlComponents.port = 3000
+        urlComponents.path = "/submitReceipt"
+        
+        let queryItems = [
+            URLQueryItem(name: "user_id", value: "Vincent_Tren"),
+        ]
+
+        // Add the query items to the URL components
+        urlComponents.queryItems = queryItems
+
+        // Create the URL request
+        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let jsonBody: [String: Any] = [
+            "image_data": base64String
+        ]
+        
+        
+
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: jsonBody, options: []) else {
+            fatalError("Could not create request body")
+        }
+        request.httpBody = httpBody
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            guard let data = data else {
+                print(data)
+                let url = URL(string: "http://10.35.125.219:3000/getItems?user_id=vincent_tren")!
+                self.getJSONData(from: url) { foods in
+                        if let foods = foods {
+                            //print("test")
+                            var i = 0
+                            for food in foods {
+                                for expirationDate in food.expirationDates{
+                                    print("\(food_name[i]) expires at \(expirationDate)")
+                                }
+                                i += 1
+                            }
+                            print(food_name)
+                            DispatchQueue.main.async {
+                                            self.collectionView.reloadData()
+                                        }
+                        }
+                        
+                    }
+                DispatchQueue.global().async {
+                      DispatchQueue.main.async {
+                          self.collectionView.reloadData()
+                      }
+                   }
+                
+                return
+            }
+            print("Response: \(String(data: data, encoding: .utf8) ?? "")")
+        }
+        task.resume()
+        print("sent")
+    }
+
+
+    @IBAction func addButton(_ sender: Any) {
+        guard let image = imageStore else {
+            print("No image selected")
+            return
+        }
+        sendImageToBackend(image)
+    }
+
 
 
     override func viewDidLoad()  {
