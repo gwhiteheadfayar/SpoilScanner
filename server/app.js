@@ -204,6 +204,7 @@ async function quickstart() {
     console.log(items);
 }
 quickstart();
+base64ToImage();
 
 function regexMachine(receiptText) {
     const stNumberRegex = /ST#\s+(\d+)/;
@@ -243,4 +244,14 @@ function walmartAPICall(forms) {
         .then(response => response.json())
         .then(data => data.receipts[0].items)
         .catch(error => console.error(error));
+}
+
+function base64ToImage(base64) {
+    // Create a base64 string from an image => ztso+Mfuej2mPmLQxgD ...
+    //const base64 = fs.readFileSync("./resources/receipt3.png", "base64");
+    // Convert base64 to buffer => <Buffer ff d8 ff db 00 43 00 ...
+    const buffer = Buffer.from(base64, "base64");
+    // Pipes an image with "new-path.jpg" as the name.
+    //fs.writeFileSync("./resources/test.png", buffer);
+    return buffer;
 }
