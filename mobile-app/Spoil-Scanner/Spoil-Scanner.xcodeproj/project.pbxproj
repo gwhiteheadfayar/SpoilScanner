@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		858319DB29D884E200754BEF /* people.json in Resources */ = {isa = PBXBuildFile; fileRef = 858319DA29D884E200754BEF /* people.json */; };
 		95DB75C029D7E7B30077A75E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB75BF29D7E7B30077A75E /* AppDelegate.swift */; };
 		95DB75C229D7E7B30077A75E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB75C129D7E7B30077A75E /* SceneDelegate.swift */; };
 		95DB75C429D7E7B30077A75E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DB75C329D7E7B30077A75E /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		858319DA29D884E200754BEF /* people.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = people.json; path = ../../../people.json; sourceTree = "<group>"; };
 		95DB75BC29D7E7B30077A75E /* Spoil-Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spoil-Scanner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95DB75BF29D7E7B30077A75E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95DB75C129D7E7B30077A75E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		95DB75B329D7E7B30077A75E = {
 			isa = PBXGroup;
 			children = (
+				858319DA29D884E200754BEF /* people.json */,
 				95DB75BE29D7E7B30077A75E /* Spoil-Scanner */,
 				95DB75D529D7E7B40077A75E /* Spoil-ScannerTests */,
 				95DB75DF29D7E7B40077A75E /* Spoil-ScannerUITests */,
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858319DB29D884E200754BEF /* people.json in Resources */,
 				95DB75CC29D7E7B40077A75E /* LaunchScreen.storyboard in Resources */,
 				95DB75C929D7E7B40077A75E /* Assets.xcassets in Resources */,
 				95DB75C729D7E7B30077A75E /* Main.storyboard in Resources */,
