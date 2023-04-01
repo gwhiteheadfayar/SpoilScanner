@@ -67,7 +67,24 @@ const refrigerate_after_opening_max_date_metric_index = 26;
 let list_of_products = food_data['sheets'][product_sheet_index]['data'];
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send(JSON.stringify({
+        "canned chicken": {
+            "expiration_dates": [
+                "2023-04-05T15:47:55.508Z",
+                "2023-04-05T15:47:58.942Z"
+            ],
+            "image_link": "https://images.app.goo.gl/DnwWBnSpEPmcF2ee8"
+        },
+        "milk": {
+            "expiration_dates": [
+                "2023-04-01T15:39:54.107Z",
+                "2023-04-01T15:45:03.653Z",
+                "2023-04-01T15:45:07.550Z"
+            ],
+            "image_link": "https://images.app.goo.gl/DnwWBnSpEPmcF2ee8"
+        }
+    }));
+
 })
 
 app.get('/getItemExp/:item_name', (req, res) => {
@@ -186,7 +203,7 @@ app.get('/getItems/', (req, res) => {
     const user_id = req.query.user_id;
     const dbRef = ref(getDatabase());
     const firebase_food_item_data = `users/${user_id}/items`;
-    
+
     get(child(dbRef, firebase_food_item_data)).then((snapshot) => {
         if (snapshot.exists()) {
             let currentItems = snapshot.val();
