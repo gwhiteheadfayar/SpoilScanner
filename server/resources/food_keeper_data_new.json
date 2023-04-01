@@ -22376,7 +22376,7 @@
             "Refrigerate_After_Thawing_Min": null
           }
         ],
-        [
+          [
             {
               "ID": 218
             },
@@ -22461,6 +22461,350 @@
             {
               "Refrigerate_After_Thawing_Min": null
             }
+        ],
+        [
+          {
+            "ID": 218
+          },
+          {
+            "Category_ID": 3
+          },
+          {
+            "Name": "Lay's Potato Chips, Barbecue Flavor, 7,75 oz Bag"
+          },
+          {
+            "Name_subtitle": "regular, degerminated"
+          },
+          {
+            "Keywords": "Cornmeal,regular,degerminated,germinated,germinate,corn,meal"
+          },
+          {
+            "Pantry_Min": null
+          },
+          {
+            "Pantry_Max": null
+          },
+          {
+            "Pantry_Metric": null
+          },
+          {
+            "Pantry_tips": null
+          },
+          {
+            "DOP_Pantry_Min": 6
+          },
+          {
+            "DOP_Pantry_Max": 12
+          },
+          {
+            "DOP_Pantry_Metric": "Months"
+          },
+          {
+            "DOP_Pantry_tips": null
+          },
+          {
+            "Pantry_After_Opening_Min": 2
+          },
+          {
+            "Pantry_After_Opening_Max": 2
+          },
+          {
+            "Pantry_After_Opening_Metric": "Years"
+          },
+          {
+            "Refrigerate_Min": null
+          },
+          {
+            "Refrigerate_Max": null
+          },
+          {
+            "Refrigerate_Metric": null
+          },
+          {
+            "Refrigerate_tips": null
+          },
+          {
+            "DOP_Refrigerate_Min": 10
+          },
+          {
+            "DOP_Refrigerate_Max": 12
+          },
+          {
+            "DOP_Refrigerate_Metric": "Months"
+          },
+          {
+            "DOP_Refrigerate_tips": null
+          },
+          {
+            "Refrigerate_After_Opening_Min": 1
+          },
+          {
+            "Refrigerate_After_Opening_Max": 1
+          },
+          {
+            "Refrigerate_After_Opening_Metric": "Months"
+          },
+          {
+            "Refrigerate_After_Thawing_Min": null
+          }
+        ],
+        [
+          {
+            "ID": 218
+          },
+          {
+            "Category_ID": 3
+          },
+          {
+            "Name": "Mike and Ike Mega Mix Chewy Candy, 5 ounce Theater Box, 1 count"
+          },
+          {
+            "Name_subtitle": "regular, degerminated"
+          },
+          {
+            "Keywords": "Cornmeal,regular,degerminated,germinated,germinate,corn,meal"
+          },
+          {
+            "Pantry_Min": null
+          },
+          {
+            "Pantry_Max": null
+          },
+          {
+            "Pantry_Metric": null
+          },
+          {
+            "Pantry_tips": null
+          },
+          {
+            "DOP_Pantry_Min": 6
+          },
+          {
+            "DOP_Pantry_Max": 12
+          },
+          {
+            "DOP_Pantry_Metric": "Months"
+          },
+          {
+            "DOP_Pantry_tips": null
+          },
+          {
+            "Pantry_After_Opening_Min": 2
+          },
+          {
+            "Pantry_After_Opening_Max": 2
+          },
+          {
+            "Pantry_After_Opening_Metric": "Years"
+          },
+          {
+            "Refrigerate_Min": null
+          },
+          {
+            "Refrigerate_Max": null
+          },
+          {
+            "Refrigerate_Metric": null
+          },
+          {
+            "Refrigerate_tips": null
+          },
+          {
+            "DOP_Refrigerate_Min": 10
+          },
+          {
+            "DOP_Refrigerate_Max": 12
+          },
+          {
+            "DOP_Refrigerate_Metric": "Months"
+          },
+          {
+            "DOP_Refrigerate_tips": null
+          },
+          {
+            "Refrigerate_After_Opening_Min": 1
+          },
+          {
+            "Refrigerate_After_Opening_Max": 1
+          },
+          {
+            "Refrigerate_After_Opening_Metric": "Months"
+          },
+          {
+            "Refrigerate_After_Thawing_Min": null
+          }
+        ],
+        [
+          {
+            "ID": 218
+          },
+          {
+            "Category_ID": 3
+          },
+          {
+            "Name": "Hidden Valley Original Ranch Salad Dressing and Topping, 16 fl oz"
+          },
+          {
+            "Name_subtitle": "regular, degerminated"
+          },
+          {
+            "Keywords": "Cornmeal,regular,degerminated,germinated,germinate,corn,meal"
+          },
+          {
+            "Pantry_Min": null
+          },
+          {
+            "Pantry_Max": null
+          },
+          {
+            "Pantry_Metric": null
+          },
+          {
+            "Pantry_tips": null
+          },
+          {
+            "DOP_Pantry_Min": 6
+          },
+          {
+            "DOP_Pantry_Max": 12
+          },
+          {
+            "DOP_Pantry_Metric": "Months"
+          },
+          {
+            "DOP_Pantry_tips": null
+          },
+          {
+            "Pantry_After_Opening_Min": 2
+          },
+          {
+            "Pantry_After_Opening_Max": 2
+          },
+          {
+            "Pantry_After_Opening_Metric": "Years"
+          },
+          {
+            "Refrigerate_Min": null
+          },
+          {
+            "Refrigerate_Max": null
+          },
+          {
+            "Refrigerate_Metric": null
+          },
+          {
+            "Refrigerate_tips": null
+          },
+          {
+            "DOP_Refrigerate_Min": 10
+          },
+          {
+            "DOP_Refrigerate_Max": 12
+          },
+          {
+            "DOP_Refrigerate_Metric": "Months"
+          },
+          {
+            "DOP_Refrigerate_tips": null
+          },
+          {
+            "Refrigerate_After_Opening_Min": 1
+          },
+          {
+            "Refrigerate_After_Opening_Max": 1
+          },
+          {
+            "Refrigerate_After_Opening_Metric": "Months"
+          },
+          {
+            "Refrigerate_After_Thawing_Min": null
+          }
+        ],
+        [
+          {
+            "ID": 218
+          },
+          {
+            "Category_ID": 3
+          },
+          {
+            "Name": "Fresca Grapefruit Citrus Sparkling Soda Water Bottles, 16,9 fl oz, 6 Pack"
+          },
+          {
+            "Name_subtitle": "regular, degerminated"
+          },
+          {
+            "Keywords": "Cornmeal,regular,degerminated,germinated,germinate,corn,meal"
+          },
+          {
+            "Pantry_Min": null
+          },
+          {
+            "Pantry_Max": null
+          },
+          {
+            "Pantry_Metric": null
+          },
+          {
+            "Pantry_tips": null
+          },
+          {
+            "DOP_Pantry_Min": 6
+          },
+          {
+            "DOP_Pantry_Max": 12
+          },
+          {
+            "DOP_Pantry_Metric": "Months"
+          },
+          {
+            "DOP_Pantry_tips": null
+          },
+          {
+            "Pantry_After_Opening_Min": 2
+          },
+          {
+            "Pantry_After_Opening_Max": 2
+          },
+          {
+            "Pantry_After_Opening_Metric": "Years"
+          },
+          {
+            "Refrigerate_Min": null
+          },
+          {
+            "Refrigerate_Max": null
+          },
+          {
+            "Refrigerate_Metric": null
+          },
+          {
+            "Refrigerate_tips": null
+          },
+          {
+            "DOP_Refrigerate_Min": 10
+          },
+          {
+            "DOP_Refrigerate_Max": 12
+          },
+          {
+            "DOP_Refrigerate_Metric": "Months"
+          },
+          {
+            "DOP_Refrigerate_tips": null
+          },
+          {
+            "Refrigerate_After_Opening_Min": 1
+          },
+          {
+            "Refrigerate_After_Opening_Max": 1
+          },
+          {
+            "Refrigerate_After_Opening_Metric": "Months"
+          },
+          {
+            "Refrigerate_After_Thawing_Min": null
+          }
         ],
         [
           {
