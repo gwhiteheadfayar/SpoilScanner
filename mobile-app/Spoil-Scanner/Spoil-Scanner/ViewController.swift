@@ -9,9 +9,8 @@ import UIKit
 
 
 struct Person: Codable {
-    let image: String,
-    let name: Int,
-    let expirationDate: Date
+    let name: String
+    let age: Int
 }
 
 
