@@ -88,54 +88,59 @@ app.get('/getItemExp/:item_name', (req, res) => {
     res.send(JSON.stringify(food_data['sheets'][product_sheet_index]['data'][selectedItem]));
 });
 
-app.post('/addItem/:item_name/:open_status', (req, res) => {
-    const item_name = req.params.item_name.toLowerCase();
-    const open_status = req.params.open_status;
+app.post('/submitReceipt', (req, res) => {
     const user_id = req.query.user_id.toLowerCase();
+    const image_data = req.query.image_data.toLowerCase();
 
-    const firebase_expiration_dates_list_ref = `users/${user_id}/items/${item_name}/expiration_dates`;
-
-    let item_expiration_dates = []
     const db = getDatabase();
     const dbRef = ref(getDatabase());
-    get(child(dbRef, firebase_expiration_dates_list_ref)).then((snapshot) => {
-        if (snapshot.exists()) {
-            item_expiration_dates = snapshot.val();
-            let selectedItem = 0;
-            for (var i = 0; i < list_of_products.length; i++) {
-                if (food_data['sheets'][product_sheet_index]['data'][i][product_name_index]['Name'].toLowerCase() == item_name.toLowerCase()) {
-                    // Determine actual expiration date
-                    selectedItem = i;
-                    const expirationDate = determineExpirationDate(food_data['sheets'][product_sheet_index]['data'][i], open_status);
-                    let newDataObject = {}
-                    item_expiration_dates.push(expirationDate);
-                    newDataObject[item_name]['expiration_dates'] = item_expiration_dates;
-                    update(ref(db, firebase_expiration_dates_list_ref), newDataObject);
-                    break;
+
+    let items = quickstart()
+
+    for(let i = 0;i<items.length;i++) {
+        const item_name = items[i]['description'];
+        const item_image_link = items[i]['imageUrl'];
+        const firebase_expiration_dates_list_ref = `users/${user_id}/items/${item_name}`;
+        let item_expiration_dates = []
+        
+        get(child(dbRef, firebase_expiration_dates_list_ref)).then((snapshot) => {
+            if (snapshot.exists()) {
+                let snapshot_result = snapshot.val();
+                item_expiration_dates = snapshot_result['expiration_dates'];
+                item_image_link = snapshot_result['image_link'];
+                let selectedItem = 0;
+                for (var i = 0; i < list_of_products.length; i++) {
+                    if (food_data['sheets'][product_sheet_index]['data'][i][product_name_index]['Name'].toLowerCase() == item_name.toLowerCase()) {
+                        // Determine actual expiration date
+                        selectedItem = i;
+                        const expirationDate = determineExpirationDate(food_data['sheets'][product_sheet_index]['data'][i], open_status);
+                        item_expiration_dates.push(expirationDate);
+                        const newDataObject = {'expiration_dates': item_expiration_dates, 'image_link': item_image_link}
+                        update(ref(db, firebase_expiration_dates_list_ref), newDataObject);
+                        break;
+                    }
                 }
-            }
-            res.send(JSON.stringify(food_data['sheets'][product_sheet_index]['data'][selectedItem]));
-        } else {
-            console.log("No data available");
-            let selectedItem = 0;
-            for (var i = 0; i < list_of_products.length; i++) {
-                if (food_data['sheets'][product_sheet_index]['data'][i][product_name_index]['Name'].toLowerCase() == item_name.toLowerCase()) {
-                    // Determine actual expiration date
-                    selectedItem = i;
-                    const expirationDate = determineExpirationDate(food_data['sheets'][product_sheet_index]['data'][i], open_status);
-                    item_expiration_dates.push(expirationDate);
-                    let newDataObject = {}
-                    newDataObject[item_name]['expiration_dates'] = item_expiration_dates;
-                    newDataObject[item_name]['image_link'] = 'https://images.app.goo.gl/DnwWBnSpEPmcF2ee8';
-                    update(ref(db, firebase_expiration_dates_list_ref), newDataObject);
-                    break;
+                res.send(JSON.stringify(food_data['sheets'][product_sheet_index]['data'][selectedItem]));
+            } else {
+                console.log("No data available");
+                let selectedItem = 0;
+                for (var i = 0; i < list_of_products.length; i++) {
+                    if (food_data['sheets'][product_sheet_index]['data'][i][product_name_index]['Name'].toLowerCase() == item_name.toLowerCase()) {
+                        // Determine actual expiration date
+                        selectedItem = i;
+                        const expirationDate = determineExpirationDate(food_data['sheets'][product_sheet_index]['data'][i], open_status);
+                        item_expiration_dates.push(expirationDate);
+                        const newDataObject = {'expiration_dates': item_expiration_dates, 'image_link': 'https://images.app.goo.gl/DnwWBnSpEPmcF2ee8'}
+                        update(ref(db, firebase_expiration_dates_list_ref), newDataObject);
+                        break;
+                    }
                 }
+                res.send(JSON.stringify(food_data['sheets'][product_sheet_index]['data'][selectedItem]));
             }
-            res.send(JSON.stringify(food_data['sheets'][product_sheet_index]['data'][selectedItem]));
-        }
-    }).catch((error) => {
-        res.send(error);
-    });
+        }).catch((error) => {
+            res.send(error);
+        });
+    }
 });
 
 
@@ -154,6 +159,7 @@ app.delete('/deleteItem/:item_name/:expiration_date', (req, res) => {
         console.log(target_expiration_date);
         if (snapshot.exists()) {
             item_expiration_dates = snapshot.val();
+            console.log(item_expiration_dates)
             let newList = []
             for (var i = 0; i < item_expiration_dates.length; i++) {
                 let currentDate = new Date(item_expiration_dates[i]);
@@ -164,9 +170,8 @@ app.delete('/deleteItem/:item_name/:expiration_date', (req, res) => {
                     console.log(item_expiration_dates[i])
                 }
             }
-            let newDataObject = {}
-            newDataObject[item_name] = newList;
-            update(ref(db, firebase_expiration_dates_list_ref), newDataObject);
+            let newDataObject = newList;
+            set(ref(db, firebase_expiration_dates_list_ref), newDataObject);
             res.send("Deleted successfully");
         } else {
             res.send("No data available");
@@ -207,10 +212,10 @@ async function quickstart() {
     const detections = result.textAnnotations;
     const forms = regexMachine(detections[0].description);
     let items = await walmartAPICall(forms);
-    console.log(items);
+    return items;
 }
-quickstart();
-base64ToImage();
+// quickstart();
+// base64ToImage();
 
 function regexMachine(receiptText) {
     const stNumberRegex = /ST#\s+(\d+)/;
