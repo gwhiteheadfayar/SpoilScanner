@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 let food_data = JSON.parse(fs.readFileSync('./resources/food_keeper_data.json'));
 
@@ -13,12 +13,12 @@ const product_refrigerate_max_date_index = 21;
 const product_refrigerate_max_date_metric_index = 22;
 const product_refrigerate_tip_index = 23
 
-const refrigerate_after_opening_max_date_index = 24;
-const refrigerate_after_opening_max_date_metric_index = 25;
+const refrigerate_after_opening_max_date_index = 25;
+const refrigerate_after_opening_max_date_metric_index = 26;
 
 let list_of_products = food_data['sheets'][product_sheet_index]['data'];
 
-for(i = 0;i<list_of_products.length;i++) {
+for(let i = 0;i<list_of_products.length;i++) {
     console.log(food_data['sheets'][product_sheet_index]['data'][i][product_name_index]);
     console.log(food_data['sheets'][product_sheet_index]['data'][i][product_pantry_max_date_index]);
     console.log(food_data['sheets'][product_sheet_index]['data'][i][product_pantry_max_date_metric_index]);
