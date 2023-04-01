@@ -29,12 +29,11 @@ function determineExpirationDate (item, open_status) {
     if(item[product_pantry_max_date_metric_index]['DOP_Refrigerate_Metric'] == 'Days') {
         timeOffset = timeOffset * 60 * 24 * item[product_refrigerate_max_date_index]['Refrigerate_After_Opening_Max'];
     }
-
-    if(open_status == true) {
-        if(item[product_pantry_max_date_metric_index]['Refrigerate_After_Opening_Metric'] == 'Months') {
+    if(Boolean(open_status) == true) {
+        if(item[refrigerate_after_opening_max_date_metric_index]['Refrigerate_After_Opening_Metric'] == 'Months') {
             timeOffset = timeOffset * 60 * 24 * 30 * item[refrigerate_after_opening_max_date_index]['Refrigerate_After_Opening_Max'];
         }
-        if(item[product_pantry_max_date_metric_index]['Refrigerate_After_Opening_Metric'] == 'Days') {
+        if(item[refrigerate_after_opening_max_date_metric_index]['Refrigerate_After_Opening_Metric'] == 'Days') {
             timeOffset = timeOffset * 60 * 24 * item[refrigerate_after_opening_max_date_index]['Refrigerate_After_Opening_Max'];
         }
     }

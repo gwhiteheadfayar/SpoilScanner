@@ -23,7 +23,7 @@ const app = express();
 const port = 3000;
 
 // Parsing food expiration data file
-let food_data = JSON.parse(fs.readFileSync('./resources/food_keeper_data.json'));
+let food_data = JSON.parse(fs.readFileSync('./resources/food_keeper_data_new.json'));
 
 // Product info index
 const product_sheet_index = 2;
@@ -132,7 +132,7 @@ app.delete('/deleteItem/:item_name/:expiration_date', (req, res) => {
           newList.push(item_expiration_dates[i]);
         }
         else {
-          console.log(item_expiration_dates[i])
+          console.log(item_expiration_dates[i]);
         }
       }
       let newDataObject = {}
